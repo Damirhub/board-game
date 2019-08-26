@@ -34,27 +34,34 @@ export const pattern = (go, flattened) => {
 
         // console.log("LASTDIGIT", lastDigit);
 
-        
+
         //to eliminata console warning
-        const under3 = lastDigit && lastDigit < 3
+        const under4 = lastDigit && lastDigit < 4
+        const startUnder10 = !lastDigit || mid[0] > 7
+        // const startOver10 = 
 
         const L =
-            under3 ? low.slice(1)
-                : low && (lastDigit && lastDigit > 8)
-                    ? low.slice(1, 2)
+            under4 ? low.slice(1)
+                :
+
+                // :
+                (lastDigit && lastDigit > 7 || lastDigit === 0) ? low.slice(1, 2)
+                    // : (lastDigit && lastDigit > 8) || go>97 ? low.slice(1, 2)
                     : low;
 
         const M =
-            (under3 || mid[0] < 0)
-                ? mid.slice(1)
-                : mid && (lastDigit && lastDigit > 7)
-                    ? mid.slice(0, 1)
-                    : mid;
+            (under4 || mid[0] < 1) ? mid.slice(1)
+                :
+                // startUnder10 || 
+                (lastDigit && lastDigit > 7) ? mid.slice(0, 1)
+                    : startUnder10 ? mid.slice(0, 1)
+                        : mid;
 
         const H =
-            under3 ? high.slice(1)
-                : high && (lastDigit && lastDigit > 8)
-                    ? high.slice(0, 2)
+            under4 ? high.slice(1)
+                :
+                startUnder10 ||
+                    (lastDigit && lastDigit > 8) ? high.slice(0, 2)
                     : high;
 
         console.log("L: ", L);
