@@ -2,7 +2,7 @@
 
 export const pattern = (go, flattened) => {
     {
-        console.log("start: ", go);
+        // console.log("start: ", go);
 
         let size = 10;
 
@@ -64,9 +64,9 @@ export const pattern = (go, flattened) => {
                     (lastDigit && lastDigit > 8) ? high.slice(0, 2)
                     : high;
 
-        console.log("L: ", L);
-        console.log("M: ", M);
-        console.log("H: ", H);
+        // console.log("L: ", L);
+        // console.log("M: ", M);
+        // console.log("H: ", H);
 
 
         flattened = [go, ...L, ...M, ...H];

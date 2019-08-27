@@ -14,11 +14,19 @@ const Test = () => {
         let start = pattern(55);
 
         temp[0] = start
+        const compare = []
+        let isIt = false
 
         for (let i = 0; i < level; i++) {
 
+            isIt && console.log("%cIZZZZIITT I? ", "color:lawngreen", isIt)
 
-            // console.log("TESTING IMPORT VAR arrays", start);
+            console.log("RETURNED FROM PATTERN", start);
+
+            // resets start after repeat
+            if (isIt) {
+                start = temp[i]
+            }
 
             // while loop to exclude starting index reappear
             let nextIndex = 0
@@ -26,13 +34,33 @@ const Test = () => {
                 nextIndex = Math.floor(Math.random() * (start.length));
             }
 
-            // console.log("index", nextIndex);
-
             start = pattern(start[nextIndex]);
 
 
+            console.log("INCOMING ELEMENT", temp[i][0])
+
             temp[i + 1] = start
+
+            compare.push(temp[i][0])
+
+
+            console.log("%cCOMPARE ARRAY", "color: aqua", compare)
+
+
+            console.log(" THIS TO COMPARE ", start[0])
+
+            const isThere = () => {
+                return compare.find(n => n === start[0])
+            }
+
+            isThere() && i--
+
+
+            isThere() ? (isIt = true)
+                : (isIt = false)
+
         }
+
 
         setNext(temp)
     }, [])
@@ -47,19 +75,19 @@ const Test = () => {
     const array2 = [11, 2, 33, 4]
 
 
-    console.log("NEXT MAPPED", next.map(i => i[0]))
-    console.log("NEXT NOMAPED", next)
+    // console.log("NEXT MAPPED", next.map(i => i[0]))
+    // console.log("NEXT NOMAPED", next)
 
 
     const intersection = next.map(x => x.filter(element => next[1].includes(element)))
 
-    console.log("isMatch? ", intersection)
+    // console.log("isMatch? ", intersection)
 
     return (
         <div>
             test
             {
-                next.map((a, i) => <div>{a[0]}</div>)
+                next.map((a, i) => <div key={i}>{a[0]}</div>)
             }
         </div>
     )
