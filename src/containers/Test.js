@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { pattern } from '../functions/pattern'
+import Grid from '../components/Grid';
 
 const Test = () => {
     const [next, setNext] = useState([])
 
-    let level = 5
+    let level = 10
     let temp = []
 
 
     useEffect(() => {
 
 
-        let start = pattern(55);
+        let start = pattern(15);
 
         temp[0] = start
         const compare = []
@@ -19,9 +20,9 @@ const Test = () => {
 
         for (let i = 0; i < level; i++) {
 
-            isIt && console.log("%cIZZZZIITT I? ", "color:lawngreen", isIt)
+            // isIt && console.log("%cIZZZZIITT I? ", "color:lawngreen", isIt)
 
-            console.log("RETURNED FROM PATTERN", start);
+            // console.log("RETURNED FROM PATTERN", start);
 
             // resets start after repeat
             if (isIt) {
@@ -36,18 +37,17 @@ const Test = () => {
 
             start = pattern(start[nextIndex]);
 
-
-            console.log("INCOMING ELEMENT", temp[i][0])
+            // console.log("INCOMING ELEMENT", temp[i][0])
 
             temp[i + 1] = start
 
             compare.push(temp[i][0])
 
 
-            console.log("%cCOMPARE ARRAY", "color: aqua", compare)
+            // console.log("%cCOMPARE ARRAY", "color: aqua", compare)
 
 
-            console.log(" THIS TO COMPARE ", start[0])
+            // console.log(" THIS TO COMPARE ", start[0])
 
             const isThere = () => {
                 return compare.find(n => n === start[0])
@@ -55,10 +55,8 @@ const Test = () => {
 
             isThere() && i--
 
-
             isThere() ? (isIt = true)
                 : (isIt = false)
-
         }
 
 
@@ -79,16 +77,10 @@ const Test = () => {
     // console.log("NEXT NOMAPED", next)
 
 
-    const intersection = next.map(x => x.filter(element => next[1].includes(element)))
-
-    // console.log("isMatch? ", intersection)
-
     return (
         <div>
             test
-            {
-                next.map((a, i) => <div key={i}>{a[0]}</div>)
-            }
+            <Grid next={next} />
         </div>
     )
 }

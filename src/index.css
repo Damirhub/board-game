@@ -10,7 +10,43 @@ body {
 
 /* app styles */
 .App {
-  max-width: 400px;
+  /* max-width: 400px; */
   margin: 30px auto;
   text-align: center;
+}
+.grid {
+  padding-bottom: 9%;
+  width: 9%;
+  border: 1px solid #404040;
+  display: inline-block;
+}
+
+
+.possible {
+  background: aqua;
+  position: absolute;
+  padding-bottom: 9%;
+  width: 9%;
+  margin-top: -9%;
+  /* border: 1px solid black; */
+  /* if numbers are displayed */
+  /* margin-top: calc( -9% - 18px); */
+  margin-top: -18px;
+}
+
+
+.grid:nth-child(10n) {
+  border-right: 2px solid purple;
+}
+
+.grid:nth-child(10n + 1) {
+  border-left: 2px solid brown;
+}
+
+.grid:nth-child(-n+10) {
+  border-top: 2px solid greenyellow;
+}
+
+.grid:nth-child(n+91) {
+  border-bottom: 2px solid darkkhaki;
 }
