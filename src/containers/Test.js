@@ -4,15 +4,19 @@ import Grid from '../components/Grid';
 
 const Test = () => {
     const [next, setNext] = useState([])
+    const [starting, setStarting] = useState(15)
 
     let level = 10
     let temp = []
 
+    // let startingPosition = (e) => {
+    //     let go = e
+    // }
 
     useEffect(() => {
 
 
-        let start = pattern(15);
+        let start = pattern(starting);
 
         temp[0] = start
         const compare = []
@@ -80,7 +84,7 @@ const Test = () => {
     return (
         <div>
             test
-            <Grid next={next} />
+            <Grid next={next} setStarting = {setStarting} />
         </div>
     )
 }

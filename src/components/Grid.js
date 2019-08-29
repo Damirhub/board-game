@@ -1,12 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 
-const Grid = ({ next }) => {
 
-    const [clicked, setClicked] = useState()
-
+const Grid = ({ next, setStarting }) => {
 
     const firstOnes = next.map(a => a[0])
-    // console.log('firstOnes', firstOnes);
+
+    const bla = firstOnes[0]
+
+
+
+    const [clicked, setClicked] = useState(bla)
+
+
+
+    // useEffect(() => {
+    //     setClicked(firstOnes[0])
+
+    // })
+
+
+    console.log('firstOnes', firstOnes);
 
     const grid = 100
     // console.log("NEXTTTTT", next.flat())
@@ -14,32 +27,34 @@ const Grid = ({ next }) => {
 
     // let unique = [...new Set(flat)]
 
-    const clickedValue = (z) => {
+    const clickedValue = (z, i) => {
         setClicked(z)
-        // console.log(z)
+        console.log('iIII', i)
+        console.log('zzzZ', z)
     }
     console.log(clicked)
 
     // const intersection = next.map((x, i) => x.filter(element => next[1].includes(element)))
-    
+
     // possible dirrection
     const nextDirrection = next.map((x, i) => x.filter(ele => [clicked].includes(ele)))
 
-    const nextDirrection2 = next.map((x, i) =>  i)
-    
-    console.log('nextDirrection', nextDirrection);
 
-    let testIndexOf = nextDirrection.map( (x, i) => (x.length !==0) && x.indexOf()  )
 
-    let indexes = []
-    console.log("WITH FIND INDEX", nextDirrection.findIndex(x => x.length !==0) )
 
-    console.log("WITH INDEX OFF", testIndexOf )
+    // finding indexes excluded clicked value
+    const possibleDirrection = nextDirrection.reduce(
+        (arr, e, i) => (e.includes(clicked) && firstOnes[i] !== clicked && arr.push(i), arr), []
+    )
 
-    var iterator = nextDirrection.keys(); 
 
-    
-     
+
+    console.log(possibleDirrection)
+
+
+
+
+
     return (
         <div>
             {/* {
@@ -49,19 +64,19 @@ const Grid = ({ next }) => {
             {
                 [...Array(grid)].map((x, i) => {
                     return (
-                        <div key = {i} className="grid">
-                        {i + 1}
+                        <div key={i} onClick={() => setStarting(i)} className="grid">
+                            {i + 1}
 
-{
-    (firstOnes.map(z => {
-        return (z === i + 1) && 
-        <div key = {i} onClick={() => clickedValue(z)} className="possible">
-        {z}
-        </div>
+                            {
+                                (firstOnes.map(z => {
+                                    return (z === i + 1) &&
+                                        <div key={i} onClick={() => clickedValue(z, i)} className="possible">
+                                            {z}
+                                        </div>
 
 
-    }))
-}
+                                }))
+                            }
 
 
                         </div>
