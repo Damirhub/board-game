@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  margin: 0; padding: 0; box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -22,17 +23,7 @@ body {
 }
 
 
-.possible {
-  background: aqua;
-  position: absolute;
-  padding-bottom: 9%;
-  width: 9%;
-  margin-top: -9%;
-  /* border: 1px solid black; */
-  /* if numbers are displayed */
-  /* margin-top: calc( -9% - 18px); */
-  margin-top: -18px;
-}
+
 
 
 .grid:nth-child(10n) {
@@ -50,3 +41,94 @@ body {
 .grid:nth-child(n+91) {
   border-bottom: 2px solid darkkhaki;
 }
+
+/* .possible {
+  background: aqua;
+  position: absolute;
+  padding-bottom: calc( 9% + 2px);
+  width: 9%; */
+  /* margin-top: -9%; */
+  /* border: 1px solid black; */
+  /* if numbers are displayed */
+  /* margin-top: calc( -9% - 18px); */
+  /* margin-top: -18px;
+} */
+
+.possible2 {
+  background: purple;
+  position: absolute;
+  padding-bottom: 9%;
+  width: 9%;
+  margin-top: -9%;
+  /* border: 1px solid black; */
+  /* if numbers are displayed */
+  /* margin-top: calc( -9% - 18px); */
+  /* margin-top: -18px; */
+}
+
+
+.possible {
+  box-sizing: none;
+  display: block;
+  border: 1px solid transparent;
+  /* border: 1px solid #404040; */
+  outline: none;
+  margin: 0;
+  text-decoration: none;
+  /* background: #0069ed; */
+  /* color: #ffffff; */
+  /* font-family: sans-serif; */
+  /* font-size: 1rem; */
+  cursor: pointer;
+  /* text-align: center; */
+  /* transition: background 250ms ease-in-out, 
+              transform 150ms ease; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: aqua;
+  position: absolute;
+  /* padding-bottom: calc( 9% + 2px); */
+  padding-bottom:  9% ;
+  width: 9%;
+  margin-top: -18px;
+}
+
+.possible2 {
+  box-sizing: none;
+  display: block;
+  border: none;
+  /* border: 1px solid #404040; */
+  outline: none;
+  margin: 0;
+  text-decoration: none;
+  /* background: #0069ed; */
+  /* color: #ffffff; */
+  /* font-family: sans-serif; */
+  /* font-size: 1rem; */
+  cursor: pointer;
+  /* text-align: center; */
+  /* transition: background 250ms ease-in-out, 
+              transform 150ms ease; */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: purple;
+  position: absolute;
+  padding-bottom: calc( 9% + 2px);
+  width: 9%;
+  margin-top: -18px;
+  z-index: 2;
+}
+
+/* button:hover,
+button:focus {
+  background: #0053ba;
+} */
+
+button:focus {
+  /* outline: 1px solid #fff; */
+  /* outline-offset: -4px; */
+}
+
+/* button:active {
+  transform: scale(0.99);
+} */

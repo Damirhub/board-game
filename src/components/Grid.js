@@ -5,21 +5,16 @@ const Grid = ({ next, setStarting }) => {
 
     const firstOnes = next.map(a => a[0])
 
-    const bla = firstOnes[0]
+    // const bla = firstOnes[0]
 
-
-
-    const [clicked, setClicked] = useState(bla)
-
+    const [clicked, setClicked] = useState()
+    const [allowedNext, setAllowedNext] = useState([15, 22])
 
 
     // useEffect(() => {
     //     setClicked(firstOnes[0])
-
     // })
 
-
-    console.log('firstOnes', firstOnes);
 
     const grid = 100
     // console.log("NEXTTTTT", next.flat())
@@ -27,39 +22,40 @@ const Grid = ({ next, setStarting }) => {
 
     // let unique = [...new Set(flat)]
 
-    const clickedValue = (z, i) => {
-        setClicked(z)
-        console.log('iIII', i)
-        console.log('zzzZ', z)
-    }
-    console.log(clicked)
 
-    // const intersection = next.map((x, i) => x.filter(element => next[1].includes(element)))
 
     // possible dirrection
-    const nextDirrection = next.map((x, i) => x.filter(ele => [clicked].includes(ele)))
+    const nextDirrection = next.map(x => x.filter(ele => [clicked].includes(ele)))
+
+    // console.log("XXXXXXXXXXXXXXXXX", nextDirrection)
 
 
 
-
-    // finding indexes excluded clicked value
-    const possibleDirrection = nextDirrection.reduce(
+    // finding indexes with excluded clicked value
+    const allowedDirrections = nextDirrection.reduce(
         (arr, e, i) => (e.includes(clicked) && firstOnes[i] !== clicked && arr.push(i), arr), []
     )
 
+    console.log("ALLOWED DIRRECTION INDEX", allowedDirrections)
 
 
-    console.log(possibleDirrection)
+    const toSetAllow = () => firstOnes.map((i, j) => firstOnes[allowedDirrections[j]]).filter(Number)
 
 
+    const clickedValue = (z) => {
+        setClicked(z)
+        setAllowedNext(toSetAllow)
+    }
+
+    console.log("clicked",clicked)
+
+    console.log('FIRST ONES USE TO ENABLE NEXT', firstOnes);
+    console.log("ALLOWED NEXT FIELDS", allowedNext)
 
 
 
     return (
         <div>
-            {/* {
-                next.map((a, i) => <div key={i}>{a[0]}</div>)
-            } */}
 
             {
                 [...Array(grid)].map((x, i) => {
@@ -68,12 +64,27 @@ const Grid = ({ next, setStarting }) => {
                             {i + 1}
 
                             {
-                                (firstOnes.map(z => {
-                                    return (z === i + 1) &&
-                                        <div key={i} onClick={() => clickedValue(z, i)} className="possible">
-                                            {z}
-                                        </div>
+                                (firstOnes.map((z, y) => {
+                                    return <>
+                                        {(z === i + 1) &&
+                                            <button key={i}
+                                                // disabled={z !== allowedNext[0] && true && z !== allowedNext[1] && true}
+                                                onClick={() => {
+                                                    clickedValue(z);
+                                                    }
+                                                }
 
+                                                className="possible">
+                                                {z}
+
+                                            </button>}
+                                        {
+                                            // z === allowedFieldsNum[0] &&
+                                            // <div key={i} onClick={() => clickedValue(z)} className="possible2">
+                                            //     {z}
+                                            // </div>
+                                        }
+                                    </>
 
                                 }))
                             }
